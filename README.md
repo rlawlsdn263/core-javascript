@@ -6,6 +6,8 @@
 
 - [x] Code Structure
 - [x] Variables
-- [ ] Strict Mode
+- [x] Strict Mode
+- [x] Global This
+- [x] Data Types
 
 #오늘 배운 거 복습하기
