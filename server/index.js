@@ -5,10 +5,10 @@
 // const params = {
 //   host: "localhost",
 //   port: 3000,
-//   open: false,
+//   open: true,
 //   root: "./client",
 // };
 
 // liveServer.start(params);
 
-console.log(self);
+// console.log(self);
