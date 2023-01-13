@@ -14,11 +14,6 @@
 //   return document.querySelectorAll(node);
 // }
 
-console.log("ds");
-
-const body = document.querySelector("h1");
-console.log(body);
-
 // const body = document.querySelector("body").childNodes;
 
 // for (let node of body) {
