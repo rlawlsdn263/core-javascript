@@ -11,12 +11,12 @@ function handler(e) {
   e.preventDefault();
   let num1 = +firstValue.value;
   let num2 = +secondValue.value;
-  let total = add(num1, num2);
+  // let total = add(num1, num2);
 
-  // result.textContent = add(num1, num2);
+  result.textContent = add(num1, num2);
 
-  clearContext();
-  result.insertAdjacentHTML("beforeend", total);
+  // result.textContent = "";
+  // result.insertAdjacentHTML("beforeend", total);
 
   firstValue.value = null;
   secondValue.value = null;
