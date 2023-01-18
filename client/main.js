@@ -5,7 +5,7 @@ function xhrData({
   onSuccess = null,
   onFail = null,
   headers = { "Content-Type": "application/json" },
-}) {
+} = {}) {
   // const {url, method, body} = options;
 
   const xhr = new XMLHttpRequest();
@@ -33,12 +33,46 @@ function xhrData({
   xhr.send(JSON.stringify(body));
 }
 
-xhrData({
-  url: "https://jsonplaceholder.typicode.com/users/1",
-  onSuccess: (result) => {
+//get 메서드
+xhrData.get = (url, onSuccess, onFail) => {
+  xhrData({
+    url,
+    onSuccess,
+    onFail,
+  });
+};
+
+/* xhrData.get(
+  "https://jsonplaceholder.typicode.com/users/1",
+  (result) => {
     console.log(result);
   },
-  onFail: (err) => {
-    console.error(err);
+  (error) => {
+    console.log(error);
+  }
+); */
+
+xhrData.post = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: "POST",
+    body,
+    url,
+    onSuccess,
+    onFail,
+  });
+};
+
+xhrData.post(
+  "https://jsonplaceholder.typicode.com/users/",
+  {
+    name: "김진우",
+    age: "27",
+    gender: "male",
   },
-});
+  (result) => {
+    console.log(result);
+  },
+  (error) => {
+    console.log(error);
+  }
+);
