@@ -25,7 +25,7 @@ xhr.addEventListener("readystatechange", () => {
 xhr.send(); 
 */
 
-//유틸함수 만들기
+/* //유틸함수 만들기
 
 function xhrData(method, url, body) {
   const xhr = new XMLHttpRequest();
@@ -54,10 +54,9 @@ xhrData("POST", "https://jsonplaceholder.typicode.com/users", {
   name: "진우",
   username: "지누옹",
   email: "rlawlsdn263@naver.com",
-});
+}); */
 
-/* 
-//구조분해할당자
+/* //구조분해할당자
 function xhrData(method, url, body) {
   const xhr = new XMLHttpRequest();
 
@@ -78,6 +77,41 @@ function xhrData(method, url, body) {
 
   xhr.send(JSON.stringify(body));
 }
-
-xhrData("GET", "https://jsonplaceholder.typicode.com/users");
  */
+
+//
+function xhrData({
+  url = "",
+  method = "GET",
+  body = null,
+  headers = { "Content-Type": "application/json" },
+}) {
+  // const {url, method, body} = options;
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open(method, url);
+
+  Object.entries(headers).forEach(([key, value]) => {
+    xhr.setRequestHeader(key, value);
+  });
+
+  xhr.addEventListener("readystatechange", () => {
+    const { status, readyState, response } = xhr;
+
+    if (status >= 200 && xhr.status < 400) {
+      if (readyState === 4) {
+        console.log("통신 성공");
+        console.log(JSON.parse(response));
+      }
+    } else {
+      console.log("통신 실패");
+    }
+  });
+
+  xhr.send(JSON.stringify(body));
+}
+
+xhrData({
+  url: "https://jsonplaceholder.typicode.com/users",
+});
