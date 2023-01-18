@@ -33,7 +33,7 @@ function xhrData({
   xhr.send(JSON.stringify(body));
 }
 
-//get 메서드
+//GET 메서드
 xhrData.get = (url, onSuccess, onFail) => {
   xhrData({
     url,
@@ -42,16 +42,7 @@ xhrData.get = (url, onSuccess, onFail) => {
   });
 };
 
-/* xhrData.get(
-  "https://jsonplaceholder.typicode.com/users/1",
-  (result) => {
-    console.log(result);
-  },
-  (error) => {
-    console.log(error);
-  }
-); */
-
+//POST 메서드
 xhrData.post = (url, body, onSuccess, onFail) => {
   xhrData({
     method: "POST",
@@ -62,17 +53,23 @@ xhrData.post = (url, body, onSuccess, onFail) => {
   });
 };
 
-xhrData.post(
-  "https://jsonplaceholder.typicode.com/users/",
-  {
-    name: "김진우",
-    age: "27",
-    gender: "male",
-  },
-  (result) => {
-    console.log(result);
-  },
-  (error) => {
-    console.log(error);
-  }
-);
+//PUT 메서드
+xhrData.put = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: "PUT",
+    body,
+    url,
+    onSuccess,
+    onFail,
+  });
+};
+
+//DELETE
+xhrData.delete = (url, body, onSuccess, onFail) => {
+  xhrData({
+    method: "DELETE",
+    url,
+    onSuccess,
+    onFail,
+  });
+};
