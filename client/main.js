@@ -1,3 +1,5 @@
+const body = document.querySelector("body");
+
 function xhrData({
   url = "",
   method = "GET",
@@ -22,7 +24,7 @@ function xhrData({
     if (status >= 200 && xhr.status < 400) {
       if (readyState === 4) {
         // console.log("통신 성공");
-        console.log(JSON.parse(response));
+        onSuccess(JSON.parse(response));
       }
     } else {
       // console.log("통신 실패");
@@ -42,34 +44,20 @@ xhrData.get = (url, onSuccess, onFail) => {
   });
 };
 
-//POST 메서드
-xhrData.post = (url, body, onSuccess, onFail) => {
-  xhrData({
-    method: "POST",
-    body,
-    url,
-    onSuccess,
-    onFail,
-  });
-};
+xhrData.get(
+  "https://jsonplaceholder.typicode.com/users/",
+  (res) => {
+    body.insertAdjacentHTML("beforeend", JSON.stringify(res));
+  },
+  (err) => {
+    body.insertAdjacentHTML("beforeend", "데이터 로딩 실패");
+  }
+);
 
-//PUT 메서드
-xhrData.put = (url, body, onSuccess, onFail) => {
-  xhrData({
-    method: "PUT",
-    body,
-    url,
-    onSuccess,
-    onFail,
-  });
-};
-
-//DELETE
-xhrData.delete = (url, body, onSuccess, onFail) => {
-  xhrData({
-    method: "DELETE",
-    url,
-    onSuccess,
-    onFail,
-  });
-};
+// export function insertLast(node, text) {
+//   if (typeof node === 'string') node = getNode(node);
+//   if (node.nodeType !== document.ELEMENT_NODE) {
+//     refError('insertLast 함수의 첫 번째 인자는 ELEMENT 노드여야 합니다.');
+//   }
+//   node.insertAdjacentHTML('beforeend', text);
+// }
